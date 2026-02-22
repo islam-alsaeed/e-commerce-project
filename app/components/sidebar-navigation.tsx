@@ -9,6 +9,7 @@ const navigationItems = [
   { name: "Dashboard", icon: "lucide:layout-dashboard", href: "#" },
   { name: "Analytics", icon: "lucide:bar-chart", href: "#" },
   { name: "Customers", icon: "lucide:users", href: "#" },
+  { name: "Products", icon:"lucide:box", href:"/products" },  
   
 ];
 
