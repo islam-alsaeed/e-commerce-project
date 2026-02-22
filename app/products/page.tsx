@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react'
-import "../styles/tables.css"
+import "../styles/products.css"
 
 
 type Products = {
@@ -35,29 +35,25 @@ function page() {
             });
     }, []);
     return (
-        <div>
-            <table>
-                <thead>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Rating</th>
-                    <th>Image</th>
-                </thead>
-                <tbody>
-                    {products.map((product)=>(
-                    <tr key={product.id}>
-                        <td>{product.id}</td>
-                        <td>{product.title}</td>
-                        <td>{product.category}</td>
-                        <td>{product.price}</td>
-                        <td>{product.rating?.rate} ({product.rating?.count} reviews)</td>
-                        <td><img src={product.image} alt={product.title} width="100" /></td>
-                    </tr>
-                    ))}
-                </tbody>
-            </table>
+        <div className="products-container">
+            {
+                products.map((product) => (
+                    <div className='prduct-card' key={product.id}>
+                        <img src={product.image} alt={product.title} className='product-image' />
+                        <h3 className='product-title'>{product.title}</h3>
+                        <p className='category'>{product.category}</p>
+
+                        <div className='price-and-rating'>
+                            <span className="price">${product.price}</span>
+                            {product.rating && (
+                                <span className="rating">
+                                    {"⭐".repeat(Math.round(product.rating.rate))}
+                                </span>)}
+
+                        </div>
+                    </div>
+                ))
+            }
         </div>
     );
 }
