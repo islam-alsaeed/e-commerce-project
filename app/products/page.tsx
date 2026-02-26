@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react'
 import "../styles/products.css"
+import Link from 'next/link';
 
 
 type Products = {
@@ -18,7 +19,7 @@ type Products = {
 
 }
 
-function page() {
+function Page() {
     const [products, setProducts] = useState<Products[]>([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -38,6 +39,7 @@ function page() {
         <div className="products-container">
             {
                 products.map((product) => (
+                    <Link href={`/products/${product.id}`} key={product.id} className='product-link'>
                     <div className='prduct-card' key={product.id}>
                         <img src={product.image} alt={product.title} className='product-image' />
                         <h3 className='product-title'>{product.title}</h3>
@@ -52,10 +54,11 @@ function page() {
 
                         </div>
                     </div>
+                    </Link>
                 ))
             }
         </div>
     );
 }
 
-export default page;
+export default Page;
