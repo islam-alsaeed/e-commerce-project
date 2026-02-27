@@ -4,15 +4,19 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 
-export default function ProductDetails({ params }: { params: { id: string } }) {
+export default function ProductDetails({ params }: { params: Promise<{ id: string }> }) { 
+    const resolved = React.use(params); 
+    const id = resolved.id;
     const router = useRouter();
     const [product, setProduct] = useState<any>(null);
+    // const resolved=React.use(params);
+
 
     useEffect(() => {
-        fetch(`https://fakestoreapi.com/products/${params.id}`)
+        fetch(`https://fakestoreapi.com/products/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data));
-    }, [params.id]);
+    }, [id]);
 
     if (!product) return <p>Loading...</p>;
 
